@@ -1,0 +1,13 @@
+{
+  "name": "customer-support-bot",
+  "version": "1.0.0",
+  "description": "A customer support bot for businesses. This bot also helps measure customer satisfaction after it hands over a conversation to a real human using the handover protocol.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Korede Bashir",
+  "dependencies": {
+    "messenger-node": "^0.3.2"
+  }
+}
