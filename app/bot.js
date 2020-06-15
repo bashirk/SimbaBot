@@ -15,23 +15,10 @@ class Bot {
             id: sender_info.value,
 
         };
-
-        // Determine Get Started Postback
-        if (PAYLOADS.GET_STARTED){
-
-        await this.messenger_client.sendText(
-            recipient,
-            "Hi there! I'm Simba Bot, and I'm here to make your life better. I do not know much, but I definitely learn from conversations to get better, I also have smart human friends who can help if I cannot answer your question. 🤓",
-        );
-        await this.messenger_client.sendText(
-            recipient,
-            "How can I help you today?",
-        );
-        }
+        let payload = received_postback.payload;
 
         // Determine which action to take
-        //if $$ else if
-            else if (webhook_event.message &&
+            if (webhook_event.message &&
                 webhook_event.message.quick_reply) {
                 // Check if user responded to CSAT or NPS survey
                     if ((PAYLOADS.CSAT_QUICK_REPLIES.map(qr => qr.payload).includes(webhook_event.message.quick_reply.payload) ||
@@ -56,6 +43,19 @@ class Bot {
                     } catch(e) {
                         console.error(e);
                     }
+                }
+
+                // Determine Get Started Postback
+            else if (payload === 'GET_STARTED'){
+
+                await this.messenger_client.sendText(
+                    recipient,
+                    "Hi there! I'm Simba Bot, and I'm here to make your life better. I do not know much, but I definitely learn from conversations to get better, I also have smart human friends who can help if I cannot answer your question. 🤓",
+                );
+                await this.messenger_client.sendText(
+                    recipient,
+                    "How can I help you today?",
+                );
                 }
 
             // Check if user responded to "Do you want to talk to an agent?"
