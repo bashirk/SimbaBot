@@ -58,11 +58,13 @@ const handlePostback = (sender_psid, received_postback) => {
 webhook.on("messages", (event_type, sender_info, webhook_event) => {
     logEvent(event_type, sender_info, webhook_event);
     bot.handleText(event_type, sender_info, webhook_event);
+    handlePostback(sender_psid, received_postback);
 });
 
 webhook.on("messaging_postbacks", (event_type, sender_info, webhook_event) => {
     logEvent(event_type, sender_info, webhook_event);
     bot.handleText(event_type, sender_info, webhook_event);
+    handlePostback(sender_psid, received_postback);
 });
 
 webhook.on("messaging_handovers", (event_type, sender_info, webhook_event) => {
