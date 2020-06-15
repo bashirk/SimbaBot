@@ -43,18 +43,28 @@ const bot_config = {
 
 const bot = new Bot(bot_config);
 
+const handlePostback = (_sender_info, received_postback) => {
+    let response;
+ 
+    // Get the payload for the postback
+    let payload = received_postback.payload;
+ 
+    if(payload === 'GET_STARTED'){
+        response = askTemplate('Are you interested in learning more information about your experience with us?');
+        callSendAPI(sender_psid, response);
+    }
+}
 
-
-webhook.on("messages", (event_type, sender_info, webhook_event, sender_psid, received_postback) => {
+webhook.on("messages", (event_type, sender_info, webhook_event, received_postback) => {
     logEvent(event_type, sender_info, webhook_event);
     bot.handleText(event_type, sender_info, webhook_event);
-    bot.handlePostback(sender_psid, received_postback);
+    handlePostback(sender_info, received_postback);
 });
 
 webhook.on("messaging_postbacks", (event_type, sender_info, webhook_event, sender_psid, received_postback) => {
     logEvent(event_type, sender_info, webhook_event);
     bot.handleText(event_type, sender_info, webhook_event);
-    bot.handlePostback(sender_psid, received_postback);
+    handlePostback(sender_info, received_postback);
 });
 
 webhook.on("messaging_handovers", (event_type, sender_info, webhook_event) => {
