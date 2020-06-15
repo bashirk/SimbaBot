@@ -139,6 +139,17 @@ class Bot {
                 );
             }
 
+            else if (ents && ents.thanks && ents.thanks[0].confidence > nlpThreshold) {
+                await this.messenger_client.sendText(
+                    recipient,
+                    "Hi there! I'm Simba Bot 🦁, and I'm here to make your life better. I do not know much, but I definitely learn from conversations to get better, I also have smart human friends who can help if I cannot answer your question. 🤓",
+                );
+                await this.messenger_client.sendText(
+                    recipient,
+                    "So. How can I help you today? 🙂",
+                );
+            }
+
             else if (ents && ents.reminder && ents.reminder[0].confidence > nlpThreshold) {
                 this.messenger_client.sendText(
                     recipient,
