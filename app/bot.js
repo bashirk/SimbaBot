@@ -116,7 +116,7 @@ class Bot {
             // Catch all section. Any special commands would have been processed above.
             // Use built-in NLP to determine what the user wants.
             let ents = null;
-            const nlpThreshold = 0.9;
+            const nlpThreshold = 0.5;
 
             if (webhook_event.message.nlp) {
                 console.log("NLP data:");
@@ -127,7 +127,7 @@ class Bot {
             if (ents && ents.greetings && ents.greetings[0].confidence > nlpThreshold) {
                 await this.messenger_client.sendText(
                     recipient,
-                    "Hi there! I'm a demo bot that doesn't know much, but I have smart human friends who can help if I cannot answer your question. 🤓",
+                    "Hi there! I'm Simba Bot, and I'm here to make your life better. I do not know much, but I definitely learn from conversations to get better, I also have smart human friends who can help if I cannot answer your question. 🤓",
                 );
                 await this.messenger_client.sendText(
                     recipient,

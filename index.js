@@ -43,6 +43,18 @@ const bot_config = {
 
 const bot = new Bot(bot_config);
 
+const handlePostback = (sender_psid, received_postback) => {
+    let response;
+ 
+    // Get the payload for the postback
+    let payload = received_postback.payload;
+ 
+    if(payload === 'GET_STARTED'){
+        response = askTemplate('Are you interested in learning more information about your experience with us?');
+        callSendAPI(sender_psid, response);
+    }
+}
+
 webhook.on("messages", (event_type, sender_info, webhook_event) => {
     logEvent(event_type, sender_info, webhook_event);
     bot.handleText(event_type, sender_info, webhook_event);
