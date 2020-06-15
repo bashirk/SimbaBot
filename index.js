@@ -51,7 +51,7 @@ const handlePostback = (_sender_info, received_postback) => {
  
     if(payload === 'GET_STARTED'){
         response = askTemplate('Are you interested in learning more information about your experience with us?');
-        callSendAPI(sender_psid, response);
+        callSendAPI(sender_info, response);
     }
 }
 
