@@ -83,12 +83,19 @@ const NPS_QUICK_REPLIES = [
 
 const CONFIRM_HANDOVER_QUICK_REPLIES = [
     {
-        title: "Yes",
+        title: "Yes 😟",
         payload: COMMAND_PAYLOADS.customer_care_accept,
     },
     {
-        title: "No, thank you",
+        title: "No, thank you 😉",
         payload: COMMAND_PAYLOADS.customer_care_reject,
+    },
+];
+
+const GET_STARTED = [
+    {
+        title: "Get Started",
+        payload: "Get Started",
     },
 ];
 

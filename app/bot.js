@@ -96,7 +96,7 @@ class Bot {
         // Direct request for agent through persistent menu or text entry
         else if ((webhook_event.postback &&
             webhook_event.postback.payload === PAYLOADS.COMMAND_PAYLOADS.persistent_menu_agent_cta_payload) ||
-            webhook_event.message.text.includes("talk") && webhook_event.message.text.includes("agent")
+            webhook_event.message.text.includes("talk") && webhook_event.message.text.includes("agent") || webhook_event.message.text.includes("support")
         ) {
             const quick_replies = PAYLOADS.CONFIRM_HANDOVER_QUICK_REPLIES.map(qr => {
                 return {
@@ -110,7 +110,7 @@ class Bot {
                 this.messenger_client.sendQuickReplies(
                     recipient,
                     quick_replies,
-                    "Do you want me to hand you over to our customer service?");
+                    "Are you interested in talking to a real human support?");
             } catch(e) {
                 console.error(e);
             }
@@ -131,18 +131,51 @@ class Bot {
             if (ents && ents.greetings && ents.greetings[0].confidence > nlpThreshold) {
                 await this.messenger_client.sendText(
                     recipient,
-                    "Hi there! I'm Simba Bot, and I'm here to make your life better. I do not know much, but I definitely learn from conversations to get better, I also have smart human friends who can help if I cannot answer your question. 🤓",
+                    "Hi there! I'm Simba Bot 🦁, and I'm here to make your life better. I do not know much, but I definitely learn from conversations to get better, I also have smart human friends who can help if I cannot answer your question. 🤓",
                 );
                 await this.messenger_client.sendText(
                     recipient,
-                    "So. How can I help you today?",
+                    "So. How can I help you today? 🙂",
                 );
+            }
+
+            else if (ents && ents.reminder && ents.reminder[0].confidence > nlpThreshold) {
+                this.messenger_client.sendText(
+                    recipient,
+                    "Hi {{user_first_name}}, your reminder has been saved! 👋",
+                );
+            }
+
+            else if (ents && ents.location && ents.location[0].confidence > nlpThreshold) {
+                this.messenger_client.sendText(
+                    recipient,
+                    "Hi {{user_first_name}}, your location has been saved. 👋",
+                );
+            }
+
+            else if (ents && ents.appointment && ents.appointment[0].confidence > nlpThreshold) {
+                this.messenger_client.sendText(
+                    recipient,
+                    "Hi {{user_first_name}}, when do you want to have your appointment booked?",
+                );
+                if (ents && ents.datetime && ents.datetime[0].confidence > nlpThreshold) {
+                    this.messenger_client.sendText(
+                        recipient,
+                        "Great! When do you want the appointment to last for, {{user_first_name}}?",
+                    );
+                }
+                if (ents && ents.duration && ents.duration[0].confidence > nlpThreshold) {
+                    this.messenger_client.sendText(
+                        recipient,
+                        "Awesome! I have just saved a reminder for your appointment booking, {{user_first_name}}.",
+                    );
+                } 
             }
 
             else if (ents && ents.bye && ents.bye[0].confidence > nlpThreshold) {
                 this.messenger_client.sendText(
                     recipient,
-                    "Bye! It was a pleasure assisting you today. 👋",
+                    "Bye! It was a pleasure assisting you today, {{user_first_name}} 👋",
                 );
             }
 

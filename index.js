@@ -43,12 +43,12 @@ const bot_config = {
 
 const bot = new Bot(bot_config);
 
-webhook.on("messages", (event_type, sender_info, webhook_event, received_postback) => {
+webhook.on("messages", (event_type, sender_info, webhook_event) => {
     logEvent(event_type, sender_info, webhook_event);
     bot.handleText(event_type, sender_info, webhook_event);
 });
 
-webhook.on("messaging_postbacks", (event_type, sender_info, webhook_event, sender_psid, received_postback) => {
+webhook.on("messaging_postbacks", (event_type, sender_info, webhook_event) => {
     logEvent(event_type, sender_info, webhook_event);
     bot.handleText(event_type, sender_info, webhook_event);
 });
