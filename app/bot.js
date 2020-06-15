@@ -142,7 +142,7 @@ class Bot {
             else if (ents && ents.reminder && ents.reminder[0].confidence > nlpThreshold) {
                 this.messenger_client.sendText(
                     recipient,
-                    "Hi {{user_first_name}}, your reminder has been saved! 👋",
+                    "Hi, your reminder has been saved! 👋",
                 );
             }
 
@@ -156,18 +156,18 @@ class Bot {
             else if (ents && ents.appointment && ents.appointment[0].confidence > nlpThreshold) {
                 this.messenger_client.sendText(
                     recipient,
-                    "Hi {{user_first_name}}, when do you want to have your appointment booked?",
+                    "Hi, when do you want to have your appointment booked?",
                 );
                 if (ents && ents.datetime && ents.datetime[0].confidence > nlpThreshold) {
                     this.messenger_client.sendText(
                         recipient,
-                        "Great! When do you want the appointment to last for, {{user_first_name}}?",
+                        "Great! When do you want the appointment to last for?",
                     );
                 }
                 if (ents && ents.duration && ents.duration[0].confidence > nlpThreshold) {
                     this.messenger_client.sendText(
                         recipient,
-                        "Awesome! I have just saved a reminder for your appointment booking, {{user_first_name}}.",
+                        "Awesome! I have just saved a reminder for your appointment booking.",
                     );
                 } 
             }
