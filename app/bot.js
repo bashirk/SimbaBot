@@ -13,35 +13,50 @@ class Bot {
     async handleText(event_type, sender_info, webhook_event) {
         let recipient = {
             id: sender_info.value,
+
         };
 
+        // Determine Get Started Postback
+        if (PAYLOADS.GET_STARTED){
+
+        await this.messenger_client.sendText(
+            recipient,
+            "Hi there! I'm Simba Bot, and I'm here to make your life better. I do not know much, but I definitely learn from conversations to get better, I also have smart human friends who can help if I cannot answer your question. 🤓",
+        );
+        await this.messenger_client.sendText(
+            recipient,
+            "How can I help you today?",
+        );
+        }
+
         // Determine which action to take
-        if (webhook_event.message &&
-            webhook_event.message.quick_reply) {
-            // Check if user responded to CSAT or NPS survey
-                if ((PAYLOADS.CSAT_QUICK_REPLIES.map(qr => qr.payload).includes(webhook_event.message.quick_reply.payload) ||
-                PAYLOADS.NPS_QUICK_REPLIES.map(qr => qr.payload).includes(webhook_event.message.quick_reply.payload))
-            ) {
-                try {
-                    const rating = webhook_event.message.quick_reply.payload;
-                    switch (this.survey_type) {
-                        case "CSAT":
-                            console.log(`Logging CSAT rating "${rating}" for user ${recipient.id}`);
-                            this.fba_client.logCSATResponse(rating, recipient.id);
-                            break;
-                        case "NPS":
-                            console.log(`Logging NPS rating "${rating}" for user ${recipient.id}`);
-                            this.fba_client.logNPSResponse(rating, recipient.id);
-                            break;
+        //if $$ else if
+            else if (webhook_event.message &&
+                webhook_event.message.quick_reply) {
+                // Check if user responded to CSAT or NPS survey
+                    if ((PAYLOADS.CSAT_QUICK_REPLIES.map(qr => qr.payload).includes(webhook_event.message.quick_reply.payload) ||
+                    PAYLOADS.NPS_QUICK_REPLIES.map(qr => qr.payload).includes(webhook_event.message.quick_reply.payload))
+                ) {
+                    try {
+                        const rating = webhook_event.message.quick_reply.payload;
+                        switch (this.survey_type) {
+                            case "CSAT":
+                                console.log(`Logging CSAT rating "${rating}" for user ${recipient.id}`);
+                                this.fba_client.logCSATResponse(rating, recipient.id);
+                                break;
+                            case "NPS":
+                                console.log(`Logging NPS rating "${rating}" for user ${recipient.id}`);
+                                this.fba_client.logNPSResponse(rating, recipient.id);
+                                break;
+                        }
+                        this.messenger_client.sendText(
+                            recipient,
+                            "Thank you for your feedback!"
+                        );
+                    } catch(e) {
+                        console.error(e);
                     }
-                    this.messenger_client.sendText(
-                        recipient,
-                        "Thank you for your feedback!"
-                    );
-                } catch(e) {
-                    console.error(e);
                 }
-            }
 
             // Check if user responded to "Do you want to talk to an agent?"
             else if (PAYLOADS.CONFIRM_HANDOVER_QUICK_REPLIES.map(qr => qr.payload).includes(webhook_event.message.quick_reply.payload)) {
@@ -80,7 +95,7 @@ class Bot {
                     try {
                         await this.messenger_client.sendText(
                             recipient,
-                            "Okay, you can keep exploring the bot. 👩‍💻",
+                            "Okay, you can keep exploring my capabilities, using the Menu. 👩‍💻",
                         );
                     } catch (e) {
                         console.error(e);
@@ -131,7 +146,7 @@ class Bot {
                 );
                 await this.messenger_client.sendText(
                     recipient,
-                    "How can I help you today?",
+                    "So. How can I help you today?",
                 );
             }
 
