@@ -10,7 +10,7 @@ class Bot {
         this.survey_type = bot_config.survey_type;
     }
 
-    async handleText(event_type, sender_info, webhook_event) {
+    async handleText(event_type, sender_info, webhook_event, received_postback) {
         let recipient = {
             id: sender_info.value,
 
