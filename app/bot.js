@@ -10,12 +10,12 @@ class Bot {
         this.survey_type = bot_config.survey_type;
     }
 
-    async handleText(event_type, sender_info, webhook_event, received_postback) {
+    async handleText(event_type, sender_info, webhook_event) {
         let recipient = {
             id: sender_info.value,
 
         };
-        let payload = received_postback.payload;
+        
 
         // Determine which action to take
             if (webhook_event.message &&
@@ -45,18 +45,7 @@ class Bot {
                     }
                 }
 
-                // Determine Get Started Postback
-            else if (payload === 'GET_STARTED'){
-
-                await this.messenger_client.sendText(
-                    recipient,
-                    "Hi there! I'm Simba Bot, and I'm here to make your life better. I do not know much, but I definitely learn from conversations to get better, I also have smart human friends who can help if I cannot answer your question. 🤓",
-                );
-                await this.messenger_client.sendText(
-                    recipient,
-                    "How can I help you today?",
-                );
-                }
+             
 
             // Check if user responded to "Do you want to talk to an agent?"
             else if (PAYLOADS.CONFIRM_HANDOVER_QUICK_REPLIES.map(qr => qr.payload).includes(webhook_event.message.quick_reply.payload)) {
@@ -164,7 +153,7 @@ class Bot {
                 );
             }
 
-            else if (webhook_event.message.text.includes("track") && webhook_event.message.text.includes("order")) {
+            else if (webhook_event.message.text.includes("Get") && webhook_event.message.text.includes("Started")) {
                 let generic_template = {
                     template_type: "generic",
                     elements: [
