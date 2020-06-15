@@ -149,7 +149,7 @@ class Bot {
             else if (ents && ents.location && ents.location[0].confidence > nlpThreshold) {
                 this.messenger_client.sendText(
                     recipient,
-                    "Hi {{user_first_name}}, your location has been saved. 👋",
+                    "Hi https://graph.facebook.com/v3.2/me/${user_first_name}" + $,{user_first_name} + ", 👋 we are located on Messenger as at now. We are looking to scale global offices soon 🙂",
                 );
             }
 
@@ -186,7 +186,7 @@ class Bot {
                 );
             }
 
-            else if (webhook_event.message.text.includes("Get") && webhook_event.message.text.includes("Started")) {
+            else if (webhook_event.message.text.includes("track") && webhook_event.message.text.includes("order")) {
                 let generic_template = {
                     template_type: "generic",
                     elements: [

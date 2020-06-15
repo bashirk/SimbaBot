@@ -95,7 +95,7 @@ const CONFIRM_HANDOVER_QUICK_REPLIES = [
 const GET_STARTED = [
     {
         title: "Get Started",
-        payload: "Get Started",
+        payload: "get_started",
     },
 ];
 
@@ -104,4 +104,5 @@ module.exports = {
     CSAT_QUICK_REPLIES,
     NPS_QUICK_REPLIES,
     CONFIRM_HANDOVER_QUICK_REPLIES,
+    GET_STARTED,
 }
