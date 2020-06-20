@@ -55,7 +55,7 @@ class Bot {
                         // Let user know that we are handing over
                         await this.messenger_client.sendText(
                             recipient,
-                            "Okay, I am connecting you with an agent. That could take a couple of minutes - you will be notified as soon as possible.",
+                            "Okay, I am connecting you with a support agent. That could take a couple of minutes - you will be notified as soon as possible.",
                         );
 
                         // Pass thread control to the secondary receiver
@@ -66,7 +66,7 @@ class Bot {
                         );
 
                         // Send a Quick Reply so that the user can cancel the request if needed
-                        let text = "In the meantime, you can send additional context or cancel your request if you don't need help anymore.";
+                        let text = "In the meantime, you can provide the incoming support agent with additional context or cancel your request if you do not need help anymore.";
                         let quick_replies = [
                             {
                                 content_type: "text",
@@ -124,7 +124,7 @@ class Bot {
             // Catch all section. Any special commands would have been processed above.
             // Use built-in NLP to determine what the user wants.
             let ents = null;
-            const nlpThreshold = 0.5;
+            const nlpThreshold = 0.8;
 
             if (webhook_event.message.nlp) {
                 console.log("NLP data:");
@@ -157,7 +157,7 @@ class Bot {
             else if (ents && ents.working_hour && ents.working_hour[0].confidence > nlpThreshold) {
                 await this.messenger_client.sendText(
                     recipient,
-                    `Hi Hi! So our working hour is Mondays through Fridays, and from 8AM to 6PM daily. 🤓`,
+                    `Hi Hi! So our working hour is Mondays through Sundays, and from 8AM to 6PM daily. 🤓`,
                 );
                 await this.messenger_client.sendText(
                     recipient,
@@ -168,7 +168,7 @@ class Bot {
             else if (ents && ents.your_location && ents.your_location[0].confidence > nlpThreshold) {
                 await this.messenger_client.sendText(
                     recipient,
-                    `Hi there! We are located at Fajuyi, Ado-Ekiti, Ekiti State 🤓`,
+                    `Hi there! We do have an office location at 15, Palace of Joy, Behind De-Links Hotel, Adehun, Ado-Ekiti 🤓`,
                 );
                 await this.messenger_client.sendText(
                     recipient,
@@ -180,6 +180,17 @@ class Bot {
                 this.messenger_client.sendText(
                     recipient,
                     "Alright. This has been noted! 👋",
+                );
+            }
+
+            else if (ents && ents.anyone_available && ents.anyone_available[0].confidence > nlpThreshold) {
+                await this.messenger_client.sendText(
+                    recipient,
+                    `Hi! We are available Mondays to Sundays, from 8AM to 6PM daily. We do have happy agents that would get your needs delivered in no time 🤓`,
+                );
+                await this.messenger_client.sendText(
+                    recipient,
+                    "I can have a meaningful conversation with you as well. Anything I might help you with? 🙂",
                 );
             }
 
