@@ -180,9 +180,20 @@ class Bot {
             }
 
             else if (ents && ents.local_search_query && ents.local_search_query[0].confidence > nlpThreshold) {
-                this.messenger_client.sendText(
+                await this.messenger_client.sendText(
                     recipient,
                     "Hi Hi! So our working hour is Mondays through Fridays, and from 8AM to 6PM daily. 🤓`",
+                );
+                await this.messenger_client.sendText(
+                    recipient,
+                    "Send me 'About Company' so I can send a link to our business' website About section 🙂",
+                );
+            }
+
+            else if (ents && ents.your_business && ents.your_business[0].confidence > nlpThreshold) {
+                this.messenger_client.sendText(
+                    recipient,
+                    "Alright! So we are an on-demand food and grocery delivery service, operating in Nigeria 🤓`",
                 );
             }
 
@@ -204,6 +215,17 @@ class Bot {
                 );
             }
 
+            else if (ents && ents.our_services && ents.our_services[0].confidence > nlpThreshold) {
+                await this.messenger_client.sendText(
+                    recipient,
+                    `We offer an on-demand delivery service. With our platform, you can easily get items from restaurants and stores delivered to you, easily and at low-cost! 🤓`,
+                );
+                await this.messenger_client.sendText(
+                    recipient,
+                    "Any other query I might help provide an answer for? Happy to help 🙂",
+                );
+            }
+            
             else if (ents && ents.location && ents.location[0].confidence > nlpThreshold) {
                 this.messenger_client.sendText(
                     recipient,
@@ -244,32 +266,30 @@ class Bot {
                 );
             }
 
-            else if (webhook_event.message.text.includes("track") && webhook_event.message.text.includes("order")) {
+            else if (webhook_event.message.text.includes("About") && webhook_event.message.text.includes("Company")) {
                 let generic_template = {
                     template_type: "generic",
                     elements: [
                         {
-                            title: "How to track your order",
-                            subtitle: "Never miss important shipping updates.",
+                            title: "DeliveryNow NG",
+                            subtitle: "Learn more about our mission to help Africans with low-cost access to their needs.",
                             image_url: "https://messenger.fb.com/wp-content/uploads/2018/02/gieofglobe_tableau.png",
                             default_action: {
                                 type: "web_url",
-                                url: "https://messenger.fb.com",
+                                url: "https://deliverynow.com.ng",
                                 webview_height_ratio: "full",
                             },
                             buttons: [
                                 {
                                     type: "web_url",
-                                    url: "https://messenger.fb.com",
+                                    url: "https://deliverynow.com.ng",
                                     webview_height_ratio: "full",
-                                    title: "Track My Order",
+                                    title: "About Us",
                                 }
                             ]
                         }
                     ]
                 };
-                
-                   
                 try {
                     this.messenger_client.sendTemplate(recipient, generic_template)
                 } catch (e) {
