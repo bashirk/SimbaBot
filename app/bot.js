@@ -124,7 +124,7 @@ class Bot {
             // Catch all section. Any special commands would have been processed above.
             // Use built-in NLP to determine what the user wants.
             let ents = null;
-            const nlpThreshold = 0.8;
+            const nlpThreshold = 0.5;
 
             if (webhook_event.message.nlp) {
                 console.log("NLP data:");
@@ -312,7 +312,7 @@ class Bot {
                 }
             }
 
-            else if (webhook_event.message.text.includes("Get") && webhook_event.message.text.includes("started")) {
+            else if (webhook_event.message.text.includes("Get") && webhook_event.message.text.includes("Started")) {
                 this.messenger_client.sendText(
                     recipient,
                     "Hi there! I'm Simba Bot 🦁, personal assistant for DeliveryNow NG, and I'm here to make your life better. I do not know much, but I definitely learn from conversations to get better, I also have smart human friends who can help if I cannot answer your question. 🤓",
