@@ -142,33 +142,33 @@ class Bot {
             else if (ents && ents.thanks && ents.thanks[0].confidence > nlpThreshold) {
                 await this.messenger_client.sendText(
                     recipient,
-                    `Hi! I'm Simba Bot 🦁, and I'm here to make your life better. I do not know much, but I definitely learn from conversations to get better, I also have smart human friends who can help if I cannot answer your question. 🤓`,
+                    `Glad I was able to help you! 🙂🤓🙂`,
                 );
                 await this.messenger_client.sendText(
                     recipient,
-                    "So. How can I help you today? 🙂",
+                    "So. Is there anything I might be of help to you for? 🙂",
                 );
             }
 
             else if (ents && ents.working_hour && ents.working_hour[0].confidence > nlpThreshold) {
                 await this.messenger_client.sendText(
                     recipient,
-                    `Hi there "${user_first_name}"! Our working hour is Mondays to Fridays, and from 8AM to 6PM daily. 🤓`,
+                    `Hi Hi! So our working hour is Mondays through Fridays, and from 8AM to 6PM daily. 🤓`,
                 );
                 await this.messenger_client.sendText(
                     recipient,
-                    "So. How can I help you today? 🙂",
+                    "Anything else I might help you with? 🙂",
                 );
             }
 
             else if (ents && ents.your_location && ents.your_location[0].confidence > nlpThreshold) {
                 await this.messenger_client.sendText(
                     recipient,
-                    `Hi there "${user_first_name}"! We are located at Fajuyi, Ado-Ekiti, Ekiti State 🤓`,
+                    `Hi there! We are located at Fajuyi, Ado-Ekiti, Ekiti State 🤓`,
                 );
                 await this.messenger_client.sendText(
                     recipient,
-                    "So. How can I help you today? 🙂",
+                    "Anything else I might help you with? 🙂",
                 );
             }
 
@@ -182,7 +182,7 @@ class Bot {
             else if (ents && ents.location && ents.location[0].confidence > nlpThreshold) {
                 this.messenger_client.sendText(
                     recipient,
-                    `Hi https://graph.facebook.com/v3.2/me/${user_first_name} "${user_first_name}" , 👋 we are located on Messenger as at now. We are looking to scale global offices soon `,
+                    `Hi https://graph.facebook.com/v3.2/me/${user_first_name}, 👋 we are located on Messenger as at now. We are looking to scale global offices soon `,
                 );
             }
 
@@ -208,7 +208,7 @@ class Bot {
             else if (ents && ents.bye && ents.bye[0].confidence > nlpThreshold) {
                 this.messenger_client.sendText(
                     recipient,
-                    "Bye! It was a pleasure assisting you today, {{user_first_name}} 👋",
+                    "Bye! It was a pleasure assisting you 👋",
                 );
             }
 
