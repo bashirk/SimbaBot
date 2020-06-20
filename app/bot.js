@@ -84,7 +84,11 @@ class Bot {
                     try {
                         await this.messenger_client.sendText(
                             recipient,
-                            "Okay, you can keep exploring my capabilities, using the Menu. 👩‍💻",
+                            "Great choice! 🙂. Quick reminder that I learn from conversations 🙂🙂",
+                        );
+                        await this.messenger_client.sendText(
+                            recipient,
+                            "So. Go on with your queries 👩‍💻🙂",
                         );
                     } catch (e) {
                         console.error(e);
