@@ -150,6 +150,17 @@ class Bot {
                 );
             }
 
+            else if (ents && ents.working_hour && ents.working_hour[0].confidence > nlpThreshold) {
+                await this.messenger_client.sendText(
+                    recipient,
+                    `Hi there "${user_first_name}"! Our working hour is Mondays to Fridays, and from 8AM to 6PM daily. 🤓`,
+                );
+                await this.messenger_client.sendText(
+                    recipient,
+                    "So. How can I help you today? 🙂",
+                );
+            }
+
             else if (ents && ents.reminder && ents.reminder[0].confidence > nlpThreshold) {
                 this.messenger_client.sendText(
                     recipient,
