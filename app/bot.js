@@ -131,7 +131,7 @@ class Bot {
             if (ents && ents.greetings && ents.greetings[0].confidence > nlpThreshold) {
                 await this.messenger_client.sendText(
                     recipient,
-                    "Hi there! I'm Simba Bot 🦁, and I'm here to make your life better. I do not know much, but I definitely learn from conversations to get better, I also have smart human friends who can help if I cannot answer your question. 🤓",
+                    "Hi there! I'm Simba Bot 🦁, personal assistant for DeliveryNow NG, and I'm here to make your life better. I do not know much, but I definitely learn from conversations to get better, I also have smart human friends who can help if I cannot answer your question. 🤓",
                 );
                 await this.messenger_client.sendText(
                     recipient,
@@ -154,6 +154,17 @@ class Bot {
                 await this.messenger_client.sendText(
                     recipient,
                     `Hi there "${user_first_name}"! Our working hour is Mondays to Fridays, and from 8AM to 6PM daily. 🤓`,
+                );
+                await this.messenger_client.sendText(
+                    recipient,
+                    "So. How can I help you today? 🙂",
+                );
+            }
+
+            else if (ents && ents.your_location && ents.your_location[0].confidence > nlpThreshold) {
+                await this.messenger_client.sendText(
+                    recipient,
+                    `Hi there "${user_first_name}"! We are located at Fajuyi, Ado-Ekiti, Ekiti State 🤓`,
                 );
                 await this.messenger_client.sendText(
                     recipient,
