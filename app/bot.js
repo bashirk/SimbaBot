@@ -175,7 +175,25 @@ class Bot {
             else if (ents && ents.reminder && ents.reminder[0].confidence > nlpThreshold) {
                 this.messenger_client.sendText(
                     recipient,
-                    "Hi, your reminder has been saved! 👋",
+                    "Hi, your reminder has been noted! 👋",
+                );
+            }
+
+            else if (ents && ents.are_you_here && ents.are_you_here[0].confidence > nlpThreshold) {
+                this.messenger_client.sendText(
+                    recipient,
+                    `Hi https://graph.facebook.com/v3.2/me/${user_first_name}, 👋 yes I am here with you 🤓`,
+                );
+            }
+
+            else if (ents && ents.alright && ents.alright[0].confidence > nlpThreshold) {
+                await this.messenger_client.sendText(
+                    recipient,
+                    `Yep. Thanks🤓`,
+                );
+                await this.messenger_client.sendText(
+                    recipient,
+                    "Any anything I might help you with? 🙂",
                 );
             }
 
