@@ -243,12 +243,20 @@ class Bot {
                         }
                     ]
                 };
+                
                    
                 try {
                     this.messenger_client.sendTemplate(recipient, generic_template)
                 } catch (e) {
                     console.error(e);
                 }
+            }
+
+            else if (webhook_event.message.text.includes("Get") && webhook_event.message.text.includes("started")) {
+                this.messenger_client.sendText(
+                    recipient,
+                    "Hi there! I'm Simba Bot 🦁, personal assistant for DeliveryNow NG, and I'm here to make your life better. I do not know much, but I definitely learn from conversations to get better, I also have smart human friends who can help if I cannot answer your question. 🤓",
+                );
             }
 
             else {
