@@ -175,7 +175,14 @@ class Bot {
             else if (ents && ents.reminder && ents.reminder[0].confidence > nlpThreshold) {
                 this.messenger_client.sendText(
                     recipient,
-                    "Hi, your reminder has been noted! 👋",
+                    "Alright. This has been noted! 👋",
+                );
+            }
+
+            else if (ents && ents.local_search_query && ents.local_search_query[0].confidence > nlpThreshold) {
+                this.messenger_client.sendText(
+                    recipient,
+                    "Hi Hi! So our working hour is Mondays through Fridays, and from 8AM to 6PM daily. 🤓`",
                 );
             }
 
