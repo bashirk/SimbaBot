@@ -215,7 +215,7 @@ class Bot {
             else if (ents && ents.are_you_here && ents.are_you_here[0].confidence > nlpThreshold) {
                 this.messenger_client.sendText(
                     recipient,
-                    `Hi https://graph.facebook.com/v3.2/me/${user_first_name}, 👋 yes I am here with you 🤓`,
+                    `Hi hello! 👋 yes I'm here with you 🤓`,
                 );
             }
 
@@ -244,7 +244,7 @@ class Bot {
             else if (ents && ents.location && ents.location[0].confidence > nlpThreshold) {
                 this.messenger_client.sendText(
                     recipient,
-                    `Hi https://graph.facebook.com/v3.2/me/${user_first_name}, 👋 we are located on Messenger as at now. We are looking to scale global offices soon `,
+                    `Hi, 👋 we are located on Messenger as at now. We are looking to scale global offices soon `,
                 );
             }
 
