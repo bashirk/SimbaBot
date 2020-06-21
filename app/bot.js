@@ -86,10 +86,7 @@ class Bot {
                             recipient,
                             "Great choice! 🙂. Quick reminder that I learn from conversations 🙂🙂",
                         );
-                        await this.messenger_client.sendText(
-                            recipient,
-                            "So. Go on with your queries 👩‍💻🙂",
-                        );
+                        
                     } catch (e) {
                         console.error(e);
                     }
