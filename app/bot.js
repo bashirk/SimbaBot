@@ -374,7 +374,6 @@ class Bot {
                 }
             }    
         }
-    }
 
     async handleHandover(event_type, sender_info, webhook_event) {
         let recipient = {
