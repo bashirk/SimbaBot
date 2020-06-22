@@ -306,6 +306,11 @@ class Bot {
                             },
                             buttons: [
                                 {
+                                    type: "phone_number",
+                                    title: "Call A Representative",
+                                    payload: "+2347015117163"
+                                },
+                                {
                                     type: "web_url",
                                     url: "https://deliverynow.com.ng",
                                     webview_height_ratio: "full",
@@ -315,6 +320,27 @@ class Bot {
                         }
                     ]
                 };
+                try {
+                    this.messenger_client.sendTemplate(recipient, generic_template)
+                } catch (e) {
+                    console.error(e);
+                }
+            }
+
+            else if (webhook_event.message.text.includes("sales") && webhook_event.message.text.includes("rep")) {
+                let generic_template = {
+                    template_type:"button",
+                        text:"Need further assistance? Talk to a representative",
+                            buttons:[
+                                {
+                                    type:"phone_number",
+                                    title:"Call Representative",
+                                    payload:"+2347015117163"
+                                }
+                             ]
+                            
+                         }
+                    };
                 try {
                     this.messenger_client.sendTemplate(recipient, generic_template)
                 } catch (e) {
