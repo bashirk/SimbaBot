@@ -6,6 +6,7 @@ const COMMAND_PAYLOADS = {
     customer_care_cancel: "customer_care_cancel",
     persistent_menu_agent_cta_payload: "customer_care_request",
     GET_STARTED: "get_started",
+    ABOUT_ME: "about_me",
 };
 
 const CSAT_QUICK_REPLIES = [
