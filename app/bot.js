@@ -296,9 +296,9 @@ class Bot {
                     template_type: "generic",
                     elements: [
                         {
-                            title: "DeliveryNow NG",
+                            title: "DeliveryNow NG | About us",
                             subtitle: "Learn more about our mission to help Africans with low-cost access to their needs.",
-                            image_url: "https://messenger.fb.com/wp-content/uploads/2018/02/gieofglobe_tableau.png",
+                            image_url: "https://deliverynow.com.ng/assets/img/various/1590847350hfsgcubbDq.jpg?v=1590847350UXJLj",
                             default_action: {
                                 type: "web_url",
                                 url: "https://deliverynow.com.ng",
