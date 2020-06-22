@@ -132,6 +132,26 @@ class Bot {
                 console.error(e);
             }
         }
+
+        else if ((webhook_event.message.text.includes("talk") && webhook_event.message.text.includes("agent") || webhook_event.message.text.includes("support"))
+            ) {
+            const quick_replies = PAYLOADS.CONFIRM_HANDOVER_QUICK_REPLIES.map(qr => {
+                return {
+                    content_type: "text",
+                    title: qr.title,
+                    payload: qr.payload,
+                }
+            });
+
+            try {
+                this.messenger_client.sendQuickReplies(
+                    recipient,
+                    quick_replies,
+                    "Are you interested in talking to a real human support?");
+            } catch(e) {
+                console.error(e);
+            }
+        }
         
         else if (webhook_event.message) {
             // Catch all section. Any special commands would have been processed above.
