@@ -97,6 +97,28 @@ class Bot {
             }
         }
 
+        // Get Started setup
+        else if ((webhook_event.postback &&
+            webhook_event.postback.payload === PAYLOADS.COMMAND_PAYLOADS.GET_STARTED)
+        ) {
+            const quick_replies = PAYLOADS.CONFIRM_HANDOVER_QUICK_REPLIES.map(qr => {
+                return {
+                    content_type: "text",
+                    title: qr.title,
+                    payload: qr.payload,
+                }
+            });
+
+            try {
+                this.messenger_client.sendQuickReplies(
+                    recipient,
+                    quick_replies,
+                    "Are you interested in talking to a real human support?");
+            } catch(e) {
+                console.error(e);
+            }
+        }
+
         // Direct request for agent through persistent menu or text entry
         else if ((webhook_event.postback &&
             webhook_event.postback.payload === PAYLOADS.COMMAND_PAYLOADS.persistent_menu_agent_cta_payload) ||
@@ -389,7 +411,7 @@ class Bot {
         ) {
             try {
                 await this.messenger_client.takeThreadControl(recipient.id, "Customer has requested that I take the thread control from you.");
-                this.messenger_client.sendText(recipient, "You are now talking to the bot again. 🤖");
+                this.messenger_client.sendText(recipient, "You are now talking to Simba again. 🤖");
             } catch(e) {
                 console.error(e);
             }

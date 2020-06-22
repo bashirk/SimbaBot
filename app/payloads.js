@@ -5,6 +5,7 @@ const COMMAND_PAYLOADS = {
     customer_care_reject: "customer_care_reject",
     customer_care_cancel: "customer_care_cancel",
     persistent_menu_agent_cta_payload: "customer_care_request",
+    GET_STARTED: "get_started",
 };
 
 const CSAT_QUICK_REPLIES = [
@@ -92,17 +93,9 @@ const CONFIRM_HANDOVER_QUICK_REPLIES = [
     },
 ];
 
-const GET_STARTED = [
-    {
-        title: "Get Started",
-        payload: "get_started",
-    },
-];
-
 module.exports = {
     COMMAND_PAYLOADS,
     CSAT_QUICK_REPLIES,
     NPS_QUICK_REPLIES,
     CONFIRM_HANDOVER_QUICK_REPLIES,
-    GET_STARTED,
 }
