@@ -118,7 +118,7 @@ class Bot {
         ) {
             const quick_replies = PAYLOADS.CONFIRM_HANDOVER_QUICK_REPLIES.map(qr => {
                 return {
-                    content_type: "text",
+                    //content_type: "text",
                     title: qr.title,
                     payload: qr.payload,
                 }
