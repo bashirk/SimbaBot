@@ -96,7 +96,7 @@ class Bot {
         // Direct request for agent through persistent menu or text entry
         else if ((webhook_event.postback &&
             webhook_event.postback.payload === PAYLOADS.COMMAND_PAYLOADS.persistent_menu_agent_cta_payload) ||
-            webhook_event.message.text === 'undefined'.includes("talk") && webhook_event.message.text=== 'undefined'.includes("agent")
+            webhook_event.message.text.includes("talk") && webhook_event.message.text.includes("agent")
         ) {
             const quick_replies = PAYLOADS.CONFIRM_HANDOVER_QUICK_REPLIES.map(qr => {
                 return {
