@@ -193,7 +193,7 @@ class Bot {
                 );
                 await this.messenger_client.sendText(
                     recipient,
-                    "Send me 'About Company' so I can send a link to our business' website About section 🙂",
+                    "You can send me the texts: 'About Company' so I can send a link to our online location (our business website) - if that is what you want 🙂",
                 );
             }
             
