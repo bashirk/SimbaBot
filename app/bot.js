@@ -186,7 +186,18 @@ class Bot {
                 );
             }
 
-            else if (ents && ents.reminder && ents.reminder[0].confidence > 0.7) {
+            else if (ents && ents.local_search_query && ents.local_search_query[0].confidence > nlpThreshold) {
+                await this.messenger_client.sendText(
+                    recipient,
+                    `Hi there! We do have an office location at 15, Palace of Joy, Behind De-Links Hotel, Adehun, Ado-Ekiti 🤓`,
+                );
+                await this.messenger_client.sendText(
+                    recipient,
+                    "Send me 'About Company' so I can send a link to our business' website About section 🙂",
+                );
+            }
+            
+            else if (ents && ents.reminder && ents.reminder[0].confidence > nlpThreshold) {
                 this.messenger_client.sendText(
                     recipient,
                     "Alright. This has been noted! 👋",
@@ -196,22 +207,11 @@ class Bot {
             else if (ents && ents.anyone_available && ents.anyone_available[0].confidence > nlpThreshold) {
                 await this.messenger_client.sendText(
                     recipient,
-                    `Hi! We are available Mondays to Sundays, from 8AM to 6PM daily. We do have happy agents that would get your needs delivered in no time 🤓`,
+                    `Hi! I am available 24/7, while the rest of the team are available Mondays to Sundays, from 8AM to 6PM daily. We do have happy agents that would get your needs delivered in no time 🤓`,
                 );
                 await this.messenger_client.sendText(
                     recipient,
                     "I can have a meaningful conversation with you as well. Anything I might help you with? 🙂",
-                );
-            }
-
-            else if (ents && ents.local_search_query && ents.local_search_query[0].confidence > nlpThreshold) {
-                await this.messenger_client.sendText(
-                    recipient,
-                    "Hi Hi! So our working hour is Mondays through Fridays, and from 8AM to 6PM daily. 🤓`",
-                );
-                await this.messenger_client.sendText(
-                    recipient,
-                    "Send me 'About Company' so I can send a link to our business' website About section 🙂",
                 );
             }
 
