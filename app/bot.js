@@ -145,7 +145,7 @@ class Bot {
             if (ents && ents.greetings && ents.greetings[0].confidence > nlpThreshold) {
                 await this.messenger_client.sendText(
                     recipient,
-                    "Hi there! I'm Simba Bot 🦁, personal assistant for DeliveryNow NG, and I'm here to make your life better. I do not know much, but I definitely learn from conversations to get better, I also have smart human friends who can help if I cannot answer your question. 🤓",
+                    "Hi there! I'm Simba Bot 🦁, virtual assistant for DeliveryNow NG - hence, DVA, and I'm here to make your life better. I do not know much, but I definitely learn from conversations to get better, I also have smart human friends who can help if I cannot answer your question. 🤓",
                 );
                 await this.messenger_client.sendText(
                     recipient,
