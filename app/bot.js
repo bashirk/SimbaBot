@@ -186,7 +186,7 @@ class Bot {
                 );
             }
 
-            else if (ents && ents.reminder && ents.reminder[0].confidence > nlpThreshold) {
+            else if (ents && ents.reminder && ents.reminder[0].confidence > 0.7) {
                 this.messenger_client.sendText(
                     recipient,
                     "Alright. This has been noted! 👋",
